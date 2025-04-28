@@ -1,39 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import axios from '../../api/axiosInstance'; // 👈 Usamos tu instancia configurada
+import axios from '../../api/axiosInstance';
 import TablaPartes from './TablaPartes';
-import FiltrosPartes from './FiltrosPartes';
 import FormularioCrearParte from './FormularioCrearParte';
 import FormularioEditarParte from './FormularioEditarParte';
 import Modal from './Modal';
-import { FaPlus } from 'react-icons/fa';
 
 
-interface Parte {
-    id: string;
-    name: string;
-    description: string;
-    quantity: number;
-}
+// interface Parte {
+//     id: string;
+//     name: string;
+//     description: string;
+//     quantity: number;
+// }
 
 const Partes = () => {
     const [partes, setPartes] = useState<any[]>([]);
-    const [busqueda, setBusqueda] = useState('');
-    const [plan, setPlan] = useState('');
-    const [isSearch, setIsSearch] = useState(false);
+    // const [busqueda, setBusqueda] = useState('');
+    // const [plan, setPlan] = useState('');
+    // const [isSearch, setIsSearch] = useState(false);
     const [mostrarCrear, setMostrarCrear] = useState(false);
     const [parteEditar, setParteEditar] = useState<any>(null);
-    const [parteSeleccionada, setParteSeleccionada] = useState<Parte | null>(null);
-    const [mostrarEditar, setMostrarEditar] = useState(false);
+
 
     const obtenerPartes = async () => {
         try {
             let url = '/api/v1/parts/all';
-            if (isSearch && busqueda) {
-                url = `/api/v1/parts/search?query=${busqueda}`;
-            }
-            if (plan) {
-                url = `/api/v1/parts/all_by_plan?plan=${plan}`;
-            }
+            // if (isSearch && busqueda) {
+            //     url = `/api/v1/parts/search?query=${busqueda}`;
+            // }
+            // if (plan) {
+            //     url = `/api/v1/parts/all_by_plan?plan=${plan}`;
+            // }
 
             const response = await axios.get(url);
             setPartes(response.data);
@@ -46,7 +43,7 @@ const Partes = () => {
 
     useEffect(() => {
         obtenerPartes();
-    }, [busqueda, plan, isSearch]);
+    });
 
     const manejarCrearParte = () => {
         setMostrarCrear(true);

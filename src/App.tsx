@@ -2,7 +2,7 @@ import React from 'react';
 
 import CrearRequisicionForm from './components/CrearRequisicionForm';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import Partes from './components/Partes/Partes';
 
 function App() {
