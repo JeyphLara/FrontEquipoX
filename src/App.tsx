@@ -4,8 +4,12 @@ import CrearRequisicionForm from './components/CrearRequisicionForm';
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import Partes from './components/Partes/Partes';
+import ChainsawList from './components/Chainsaws/ChainsawList';
+import ChainsawForm from './components/Chainsaws/ChainsawForm';
+import ChainsawEdit from './components/Chainsaws/ChainsawEdit';
+import ChainsawSearch from './components/Chainsaws/ChainsawSearch';
 
-function App() {
+const App: React.FC = () => {
   return (
     /*{ <div className="App">
       <div>
@@ -21,6 +25,7 @@ function App() {
           <li><Link to="/requisiciones">Requisiciones</Link></li>
           <li><Link to="/catalogo-partes">Catálogo de Partes</Link></li>
           <li><Link to="/planes-partes">Planes para las Partes</Link></li>
+          <li><Link to="/all">Lista Motosierras</Link></li>
         </ul>
       </nav>
       <div className="content">
@@ -29,6 +34,11 @@ function App() {
           <Route path="/requisiciones" element={<CrearRequisicionForm />} />
           <Route path="/catalogo-partes" element={<Partes />} />
           <Route path="/planes-partes" element={<CrearRequisicionForm />} />
+          
+          <Route path="/all" element={<ChainsawList />} />
+          <Route path="/create" element={<ChainsawForm />} />
+          <Route path="/edit/:id" element={<ChainsawEdit />} />
+          <Route path="/search" element={<ChainsawSearch />} />
         </Routes>
       </div>
     </div>
