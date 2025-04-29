@@ -81,6 +81,31 @@ button {
   border-radius: 4px;
 }
 
+.butonEdit {
+  padding: 6px 12px;
+  background-color: #0db6a8;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+.butonEdit:hover {
+  padding: 6px 12px;
+  background-color: #097c73;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.butonDelete {
+  background-color: #abb60d;
+}
+.butonDelete:hover {
+  background-color: #7c7a09;
+}
+
 button:hover {
   background-color: #45a049;
 }

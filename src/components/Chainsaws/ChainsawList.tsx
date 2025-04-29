@@ -104,7 +104,7 @@ const ChainsawList: React.FC = () => {
                 <td>{chainsaw.quantity}</td>
                 <td>{chainsaw.type}</td>
                 <td>
-                  <button onClick={() => handleEdit(chainsaw)}>Editar</button>
+                  <button className='butonEdit' onClick={() => handleEdit(chainsaw)}>Editar</button>
                 </td>
               </tr>
             ))
@@ -116,9 +116,9 @@ const ChainsawList: React.FC = () => {
         </tbody>
       </table>
 
-      <ChainsawModal 
-        isOpen={isModalOpen} 
-        onClose={handleCloseModal} 
+      <ChainsawModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
         chainsawToEdit={chainsawToEdit}
         onSave={handleSave} // Pasamos el callback para actualizar la lista
       />

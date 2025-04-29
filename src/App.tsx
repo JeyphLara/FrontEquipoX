@@ -22,7 +22,7 @@ function App() {
           <li><Link to="/requisiciones">Requisiciones</Link></li>
           <li><Link to="/catalogo-partes">Catálogo de Partes</Link></li>
           <li><Link to="/planes-partes">Planes para las Partes</Link></li>
-          <li><Link to="/all">Lista Motosierras</Link></li>
+          <li><Link to="/ChainsawAll">Lista Motosierras</Link></li>
         </ul>
       </nav>
       <div className="content">
@@ -31,8 +31,7 @@ function App() {
           <Route path="/requisiciones" element={<CrearRequisicionForm />} />
           <Route path="/catalogo-partes" element={<Partes />} />
           <Route path="/planes-partes" element={<CrearRequisicionForm />} />
-          
-          <Route path="/all" element={<ChainsawList />} />
+          <Route path="/ChainsawAll" element={<ChainsawList />} />
         </Routes>
       </div>
     </div>
@@ -41,4 +40,3 @@ function App() {
 }
 
 export default App;
-

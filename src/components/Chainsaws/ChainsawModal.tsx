@@ -54,14 +54,23 @@ const ChainsawModal: React.FC<ChainsawModalProps> = ({
   useEffect(() => {
     if (isOpen) {
       getAllPlans()
-        .then((response) => setPlans(response.data))
+        .then((response) => {
+          setPlans(response.data);
+          // Si estamos editando y no se ha cambiado manualmente el planId, sincronizarlo
+          if (chainsawToEdit) {
+            setFormData(prevData => ({
+              ...prevData,
+              planId: chainsawToEdit.planId
+            }));
+          }
+        })
         .catch((err) => {
           console.error("Error al cargar planes:", err);
           setPlanError("Hubo un error al cargar los planes disponibles.");
         });
     }
-  }, [isOpen]);
-
+  }, [isOpen, chainsawToEdit]);
+  
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {

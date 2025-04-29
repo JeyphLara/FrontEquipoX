@@ -26,7 +26,7 @@ export const createChainsaw = (data: Chainsaw) =>
     description: data.description,
     quantity: data.quantity,
     type: data.type,
-    planId: data.planId, // ✅ aquí corregido
+    planId: data.planId, 
   });
 
 // Actualizar una motosierra existente
