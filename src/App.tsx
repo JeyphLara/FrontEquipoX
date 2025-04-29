@@ -5,11 +5,8 @@ import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import Partes from './components/Partes/Partes';
 import ChainsawList from './components/Chainsaws/ChainsawList';
-import ChainsawForm from './components/Chainsaws/ChainsawForm';
-import ChainsawEdit from './components/Chainsaws/ChainsawEdit';
-import ChainsawSearch from './components/Chainsaws/ChainsawSearch';
 
-const App: React.FC = () => {
+function App() {
   return (
     /*{ <div className="App">
       <div>
@@ -29,16 +26,13 @@ const App: React.FC = () => {
         </ul>
       </nav>
       <div className="content">
-        <h1>Laboratorio - Requisiciones</h1>
+        <h3>Laboratorio - Requisiciones</h3>
         <Routes>
           <Route path="/requisiciones" element={<CrearRequisicionForm />} />
           <Route path="/catalogo-partes" element={<Partes />} />
           <Route path="/planes-partes" element={<CrearRequisicionForm />} />
           
           <Route path="/all" element={<ChainsawList />} />
-          <Route path="/create" element={<ChainsawForm />} />
-          <Route path="/edit/:id" element={<ChainsawEdit />} />
-          <Route path="/search" element={<ChainsawSearch />} />
         </Routes>
       </div>
     </div>

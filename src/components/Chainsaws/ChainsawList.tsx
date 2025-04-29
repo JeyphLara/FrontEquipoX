@@ -49,17 +49,18 @@ const ChainsawList: React.FC = () => {
 
   const handleSave = (chainsaw: Chainsaw) => {
     if (chainsawToEdit) {
-      // Actualizar en la lista
+      // Si se está editando, actualiza el elemento en ambas listas
       setChainsaws((prevChainsaws) =>
-        prevChainsaws.map((item) =>
-          item.id === chainsaw.id ? { ...item, ...chainsaw } : item
-        )
+        prevChainsaws.map((item) => item.id === chainsaw.id ? { ...item, ...chainsaw } : item)
+      );
+      setFilteredChainsaws((prevFilteredChainsaws) =>
+        prevFilteredChainsaws.map((item) => item.id === chainsaw.id ? { ...item, ...chainsaw } : item)
       );
     } else {
-      // Agregar la nueva motosierra a la lista
+      // Si se está creando, agrega el nuevo elemento a ambas listas
       setChainsaws((prevChainsaws) => [...prevChainsaws, chainsaw]);
+      setFilteredChainsaws((prevFilteredChainsaws) => [...prevFilteredChainsaws, chainsaw]);
     }
-    setFilteredChainsaws((prevFilteredChainsaws) => [...prevFilteredChainsaws, chainsaw]);
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,13 +68,13 @@ const ChainsawList: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="chainsaw-list-container">
       <h2>Listado de Motosierras</h2>
 
       <div className="search-container">
         <input
           type="text"
-          placeholder="Buscar motosierras..."
+          placeholder="Buscar..."
           value={searchTerm}
           onChange={handleSearchChange}
           className="search-input"

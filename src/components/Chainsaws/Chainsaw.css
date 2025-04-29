@@ -74,7 +74,7 @@
 
 button {
   padding: 6px 12px;
-  background-color: #4CAF50;
+  background-color: #094b5f;
   color: white;
   border: none;
   cursor: pointer;
@@ -90,7 +90,8 @@ button:focus {
 }
 
 h2 {
-  font-size: 24px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 30px;
   margin-bottom: 20px;
 }
 
@@ -113,8 +114,3 @@ button:disabled {
   border-radius: 4px;
 }
 
-.chainsaw-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}

@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { Chainsaw, createChainsaw, updateChainsaw } from '../../api/chainsawsApi';
-import './ChainsawModal.css';
+import React, { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
+import {
+  Chainsaw,
+  createChainsaw,
+  updateChainsaw,
+  Plan,
+  getAllPlans,
+} from "../../api/chainsawsApi";
+import "./ChainsawModal.css";
 
 interface ChainsawModalProps {
   isOpen: boolean;
@@ -10,37 +16,55 @@ interface ChainsawModalProps {
   onSave: (chainsaw: Chainsaw) => void;
 }
 
-const ChainsawModal: React.FC<ChainsawModalProps> = ({ isOpen, onClose, chainsawToEdit, onSave }) => {
+const ChainsawModal: React.FC<ChainsawModalProps> = ({
+  isOpen,
+  onClose,
+  chainsawToEdit,
+  onSave,
+}) => {
   const [formData, setFormData] = useState<Chainsaw>({
-    id: chainsawToEdit ? chainsawToEdit.id : '',  // Si hay una motosierra a editar, usamos su ID, de lo contrario, dejamos vacío
-    name: '',
-    description: '',
+    id: "",
+    name: "",
+    description: "",
     quantity: 0,
-    type: '',
-    planId: ''  // Esto es necesario para el campo planId
+    type: "",
+    planId: "", // Plan vacío por defecto
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<string>("");
+  const [plans, setPlans] = useState<Plan[]>([]);
+  const [planError, setPlanError] = useState<string>(""); // Mensaje de error si no se cargan los planes
 
   useEffect(() => {
     if (chainsawToEdit) {
-      // Si estamos editando, mostramos los datos existentes
       setFormData(chainsawToEdit);
     } else {
-      // Si estamos creando, limpiamos los campos y generamos un nuevo UUID para id y planId
       setFormData({
-        id: uuidv4(),  // Generamos un nuevo UUID
-        name: '',
-        description: '',
+        id: uuidv4(),
+        name: "",
+        description: "",
         quantity: 0,
-        type: '',
-        planId: uuidv4(), // Generamos un nuevo UUID para planId
+        type: "",
+        planId: "", // Plan vacío para nueva motosierra
       });
     }
   }, [chainsawToEdit, isOpen]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    if (isOpen) {
+      getAllPlans()
+        .then((response) => setPlans(response.data))
+        .catch((err) => {
+          console.error("Error al cargar planes:", err);
+          setPlanError("Hubo un error al cargar los planes disponibles.");
+        });
+    }
+  }, [isOpen]);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -51,34 +75,30 @@ const ChainsawModal: React.FC<ChainsawModalProps> = ({ isOpen, onClose, chainsaw
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setError('');
+    setError("");
 
     const { id, ...dataToSend } = formData;
 
-    // Mostrar los datos que se enviarán a la API (útil para depuración)
-    console.log('Datos enviados:', dataToSend);
+    console.log("Datos enviados:", dataToSend);
 
     try {
       let result;
       if (chainsawToEdit) {
-        // Si estamos editando, actualizamos la motosierra
         result = await updateChainsaw(id, formData);
       } else {
-        // Si estamos creando, creamos una nueva motosierra
         result = await createChainsaw(formData);
       }
 
-      if ('data' in result) {
-        onSave(result.data); // Accedemos a los datos de forma segura
+      if ("data" in result) {
+        onSave(result.data);
       } else {
-        onSave(result); // Manejo en caso de que result sea de tipo Chainsaw
+        onSave(result);
       }
-      onClose();  // Cerrar el modal solo si la operación fue exitosa
-
+      onClose();
     } catch (err) {
-      console.error('Error al crear/actualizar la motosierra:', err);
-      setError('Hubo un error al guardar la motosierra. Intenta nuevamente.');
-      setTimeout(() => setError(''), 3000);  // Limpiar el mensaje de error después de 3 segundos
+      console.error("Error al crear/actualizar la motosierra:", err);
+      setError("Hubo un error al guardar la motosierra. Intenta nuevamente.");
+      setTimeout(() => setError(""), 3000);
     } finally {
       setIsSubmitting(false);
     }
@@ -86,31 +106,35 @@ const ChainsawModal: React.FC<ChainsawModalProps> = ({ isOpen, onClose, chainsaw
 
   const handleCancel = () => {
     setFormData({
-      id: chainsawToEdit ? chainsawToEdit.id : '',  // Mantener el ID si se está editando
-      name: '',
-      description: '',
+      id: chainsawToEdit ? chainsawToEdit.id : "",
+      name: "",
+      description: "",
       quantity: 0,
-      type: '',
-      planId: ''  // Limpiar planId al cerrar el modal
+      type: "",
+      planId: chainsawToEdit ? chainsawToEdit.planId : "", // Mantener el plan seleccionado si se edita
     });
-    setError('');
-    onClose();  // Cierra el modal
+    setError("");
+    setPlanError(""); // Reseteamos el error de carga de planes
+    onClose();
   };
 
   useEffect(() => {
     if (!isOpen) {
-      setError('');  // Limpiar el error cuando el modal se cierra
+      setError("");
+      setPlanError(""); // Reseteamos el error al cerrar el modal
     }
   }, [isOpen]);
 
-  if (!isOpen) return null;  // Si el modal no está abierto, no se renderiza
+  if (!isOpen) return null;
 
   return (
     <>
       <div className="modal-overlay" onClick={handleCancel}></div>
       <div className="modal">
-        <h2>{chainsawToEdit ? 'Editar Motosierra' : 'Crear Motosierra'}</h2>
+        <h2>{chainsawToEdit ? "Editar Motosierra" : "Crear Motosierra"}</h2>
         {error && <div className="error">{error}</div>}
+        {planError && <div className="error">{planError}</div>}{" "}
+        {/* Mostrar error de carga de planes */}
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -145,20 +169,27 @@ const ChainsawModal: React.FC<ChainsawModalProps> = ({ isOpen, onClose, chainsaw
             required
           />
 
-          {/* Campo para Plan ID */}
-          <input
-            type="text"
+          <select
+            className="select-plan"
             name="planId"
-            placeholder="Plan ID"
             value={formData.planId}
             onChange={handleChange}
             required
-          />
+          >
+            <option value="">Selecciona un Plan</option>
+            {plans.map((plan) => (
+              <option key={plan.id} value={plan.id}>
+                {plan.name}
+              </option>
+            ))}
+          </select>
 
           <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? 'Guardando...' : 'Guardar'}
+            {isSubmitting ? "Guardando..." : "Guardar"}
           </button>
-          <button type="button" onClick={handleCancel}>Cancelar</button>
+          <button type="button" onClick={handleCancel}>
+            Cancelar
+          </button>
         </form>
       </div>
     </>

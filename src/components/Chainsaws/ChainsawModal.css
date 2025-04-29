@@ -4,10 +4,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: rgb(0, 0, 0);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(20, 31, 32, 0.2);
     z-index: 1000;
     max-width: 400px;  /* Tamaño máximo del modal */
     width: 100%;
@@ -36,7 +36,7 @@
     margin: 10px 0;
     padding: 8px;  /* Reducido para evitar que se vean tan grandes */
     border-radius: 4px;
-    border: 1px solid #ccc;
+    border: 1px solid #197288;
     font-size: 14px;  /* Tamaño de fuente más pequeño */
     box-sizing: border-box;  /* Para asegurar que el padding esté incluido en el ancho total */
   }
@@ -48,16 +48,58 @@
     border: none;
     cursor: pointer;
     margin-top: 10px;
-    font-size: 14px;  /* Tamaño de fuente más pequeño */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;  /* Tamaño de fuente más pequeño */
   }
   
   .modal button[type="submit"] {
-    background-color: #4CAF50;
+    background-color: #37a53b;
+    color: white;
+  }
+
+  .modal button[type="submit"]:hover {
+    background-color: #1ea022;
     color: white;
   }
   
   .modal button[type="button"] {
     background-color: #f44336;
     color: white;
+  }
+
+  .modal button[type="button"]:hover {
+    background-color: #e92719;
+    color: white;
+  }
+  .modal h2{
+    font-family: cursive; 
+    font-size: 24px;
+    color: #37a53b;
+  }
+
+  .select-plan {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #191b19;
+    color: white;
+    background-image: url("data:image/svg+xml,%3Csvg fill='gray' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+  
+  .select-plan:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
   }
   
