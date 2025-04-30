@@ -38,7 +38,7 @@ jobs:
           sudo docker rmi frontend-image || true
           
           # Construimos nueva imagen
-          sudo docker build -t frontend-image -f DockerFile .
+          sudo docker build -t frontend-image .
 
           # Levantamos nuevo contenedor
           sudo docker run -d --name frontend-container -p 3000:3000 frontend-image
