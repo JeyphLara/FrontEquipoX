@@ -1,0 +1,141 @@
+/* src/components/Chainsaws/Chainsaw.css */
+.chainsaw-container {
+  padding: 20px;
+  background-color: #f7f9fc;
+}
+
+.chainsaw-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.chainsaw-item {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background: #fff;
+}
+
+
+/*estilos para el formulario de creación*/
+.chainsaw-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+}
+
+.chainsaw-form input,
+.chainsaw-form textarea {
+  padding: 8px;
+  font-size: 16px;
+}
+
+.chainsaw-form button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+
+/* Estilos para la tabla */
+.chainsaw-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.chainsaw-table th,
+.chainsaw-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.chainsaw-table th {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+}
+
+.chainsaw-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.chainsaw-table tr:hover {
+  background-color: #ddd;
+}
+
+button {
+  padding: 6px 12px;
+  background-color: #094b5f;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.butonEdit {
+  padding: 6px 12px;
+  background-color: #0db6a8;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+.butonEdit:hover {
+  padding: 6px 12px;
+  background-color: #097c73;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.butonDelete {
+  background-color: #abb60d;
+}
+.butonDelete:hover {
+  background-color: #7c7a09;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:focus {
+  outline: none;
+}
+
+h2 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+/* Estilo para el campo de búsqueda */
+.search-container {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 500px;
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
