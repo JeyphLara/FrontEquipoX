@@ -1,10 +1,14 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
 
 import CrearRequisicionForm from './components/CrearRequisicionForm';
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import Partes from './components/Partes/Partes';
 import ChainsawList from './components/Chainsaws/ChainsawList';
+
+//pages
+import { PlanPage } from './pages/plan/PlanPage';
 
 function App() {
   return (
@@ -22,6 +26,7 @@ function App() {
           <li><Link to="/requisiciones">Requisiciones</Link></li>
           <li><Link to="/catalogo-partes">Catálogo de Partes</Link></li>
           <li><Link to="/planes-partes">Planes para las Partes</Link></li>
+          <li><Link to="/planes">Planes</Link></li>
           <li><Link to="/ChainsawAll">Lista Motosierras</Link></li>
         </ul>
       </nav>
@@ -31,9 +36,11 @@ function App() {
           <Route path="/requisiciones" element={<CrearRequisicionForm />} />
           <Route path="/catalogo-partes" element={<Partes />} />
           <Route path="/planes-partes" element={<CrearRequisicionForm />} />
+          <Route path="/planes" element={<PlanPage />} />
           <Route path="/ChainsawAll" element={<ChainsawList />} />
         </Routes>
       </div>
+<ToastContainer/>
     </div>
 
   );
