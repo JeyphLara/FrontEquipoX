@@ -24,7 +24,6 @@ function App() {
         <ul className="nav-links">
           <li><Link to="/requisiciones">Requisiciones</Link></li>
           <li><Link to="/catalogo-partes">Catálogo de Partes</Link></li>
-          <li><Link to="/planes-partes">Planes para las Partes</Link></li>
           <li><Link to="/planes">Planes</Link></li>
         </ul>
       </nav>
@@ -33,11 +32,10 @@ function App() {
         <Routes>
           <Route path="/requisiciones" element={<CrearRequisicionForm />} />
           <Route path="/catalogo-partes" element={<Partes />} />
-          <Route path="/planes-partes" element={<CrearRequisicionForm />} />
           <Route path="/planes" element={<PlanPage />} />
         </Routes>
       </div>
-<ToastContainer/>
+      <ToastContainer />
     </div>
 
   );
