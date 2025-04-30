@@ -1,0 +1,44 @@
+name: Deploy Frontend to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Build and Upload Frontend files to EC2
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        source: "."
+        target: "/home/ec2-user/frontend-equipox"
+
+    - name: SSH and Build/Run Docker Container
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          cd /home/ec2-user/frontend-equipox
+          
+          # Borramos contenedor viejo si existe
+          sudo docker rm -f frontend-container || true
+          
+          # Borramos imagen vieja si existe
+          sudo docker rmi frontend-image || true
+          
+          # Construimos nueva imagen
+          sudo docker build -t frontend-image .
+
+          # Levantamos nuevo contenedor
+          sudo docker run -d --name frontend-container -p 3000:3000 frontend-image
