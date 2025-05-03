@@ -15,7 +15,7 @@ import Modal from './Modal';
 
 const Partes = () => {
     const [partes, setPartes] = useState<any[]>([]);
-    // const [busqueda, setBusqueda] = useState('');
+    const [busqueda, setBusqueda] = useState('');
     // const [plan, setPlan] = useState('');
     // const [isSearch, setIsSearch] = useState(false);
     const [mostrarCrear, setMostrarCrear] = useState(false);
@@ -39,6 +39,9 @@ const Partes = () => {
         }
     };
 
+    const partesFiltradas = partes.filter(parte =>
+        parte.name.toLowerCase().includes(busqueda.toLowerCase())
+    );
 
 
     useEffect(() => {
@@ -83,9 +86,23 @@ const Partes = () => {
                 setIsSearch={setIsSearch}
             /> */}
 
-            <button onClick={manejarCrearParte} style={estilos.btnCreate}>Crear Nueva Parte</button>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '12px' }}>
+                <button onClick={manejarCrearParte} style={estilos.btnCreate}>Crear Nueva Parte</button>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '12px' }}>
+                <input
+                    type="text"
+                    placeholder="Buscar por nombre"
+                    value={busqueda}
+                    onChange={(e) => setBusqueda(e.target.value)}
+                    style={{ marginBottom: '1rem', padding: '6px', borderRadius: '6px', border: '1px solid #ccc', width: '200px' }}
+                />
+            </div>
 
-            <TablaPartes partes={partes} onEditar={manejarEditarParte} />
+
+
+
+            <TablaPartes partes={partesFiltradas} onEditar={manejarEditarParte} />
 
             <Modal isOpen={mostrarCrear} onClose={() => setMostrarCrear(false)}>
                 <FormularioCrearParte onCrear={refrescarLista} />

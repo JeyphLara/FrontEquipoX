@@ -12,7 +12,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     return (
         <div style={estilos.overlay}>
             <div style={estilos.modal}>
-                <button style={estilos.cerrar} onClick={onClose}>X</button>
+                <button style={estilos.cerrar} onClick={onClose}></button>
                 {children}
             </div>
         </div>
