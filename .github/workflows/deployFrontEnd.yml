@@ -17,10 +17,17 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 20
-        
+
+    - uses: actions/cache@v3 
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+    
     - name: Install dependencies and build
       run: |
+        npm config set registry https://registry.npmmirror.com
         npm install
+        npm config set registry https://registry.npmjs.org
         npm run build
 
     - name: Build and Upload Frontend files to EC2
