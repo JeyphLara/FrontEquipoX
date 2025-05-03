@@ -37,7 +37,7 @@ jobs:
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_SSH_KEY }}
         source: "build/"
-        target: "/home/ec2-user/frontend-equipox/build"
+        target: "/home/ec2-user/frontend-equipox/"
 
     - name: SSH and Build/Run Docker Container
       uses: appleboy/ssh-action@v0.1.8
@@ -58,4 +58,4 @@ jobs:
           sudo docker build -t frontend-image .
 
           # Levantamos nuevo contenedor
-          sudo docker run -d --name frontend-container -p 3000:3000 frontend-image
+          sudo docker run -d --name frontend-container -p 80:80 frontend-image
