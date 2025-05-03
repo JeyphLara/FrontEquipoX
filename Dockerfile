@@ -9,6 +9,6 @@
 # Etapa 2: Servir la app
 FROM nginx:stable-alpine
 #COPY --from=build /app/build /usr/share/nginx/html
-COPY build/ /usr/share/nginx/html 
+COPY ./frontend-equipox/build/ /usr/share/nginx/html 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
