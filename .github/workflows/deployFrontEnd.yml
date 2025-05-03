@@ -13,14 +13,24 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v4
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+        
+    - name: Install dependencies and build
+      run: |
+        npm install
+        npm run build
+
     - name: Build and Upload Frontend files to EC2
       uses: appleboy/scp-action@v0.1.4
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_SSH_KEY }}
-        source: "."
-        target: "/home/ec2-user/frontend-equipox"
+        source: "build/"
+        target: "/home/ec2-user/frontend-equipox/build"
 
     - name: SSH and Build/Run Docker Container
       uses: appleboy/ssh-action@v0.1.8
