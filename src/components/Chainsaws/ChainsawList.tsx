@@ -91,7 +91,7 @@ const ChainsawList: React.FC = () => {
             <th>Descripción</th>
             <th>Cantidad</th>
             <th>Tipo</th>
-            <th>Acciones</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
