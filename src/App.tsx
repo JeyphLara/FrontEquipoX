@@ -4,6 +4,7 @@ import CrearRequisicionForm from './components/CrearRequisicionForm';
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import Partes from './components/Partes/Partes';
+import Orden from './components/OrdSalidad/Orden';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <li><Link to="/requisiciones">Requisiciones</Link></li>
           <li><Link to="/catalogo-partes">Catálogo de Partes</Link></li>
           <li><Link to="/planes-partes">Planes para las Partes</Link></li>
+          <li><Link to="Orden-salida">Ordenas de Salida</Link></li>
         </ul>
       </nav>
       <div className="content">
@@ -29,6 +31,9 @@ function App() {
           <Route path="/requisiciones" element={<CrearRequisicionForm />} />
           <Route path="/catalogo-partes" element={<Partes />} />
           <Route path="/planes-partes" element={<CrearRequisicionForm />} />
+          <Route path="/Orden-salida" element={<Orden/>} />
+         
+
         </Routes>
       </div>
     </div>
