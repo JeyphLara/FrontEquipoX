@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import oxios from '../../api/ordenns';
 import './Orden.css';
 
+
+// Se define una interfaz
 interface Orden {
   id: string;
   departure_date: string;
 }
-
+// Se define un componente funcional llamado 'Orden'
 const Orden = () => {
   const [ordenes, setOrdenes] = useState<Orden[]>([]);
   const [todasLasOrdenes, setTodasLasOrdenes] = useState<Orden[]>([]);
@@ -18,37 +20,41 @@ const Orden = () => {
   useEffect(() => {
     fetchOrdenes();
   }, []);
-
+// Función asíncrona para obtener las órdenes desde el servido
   const fetchOrdenes = async () => {
     try {
       const res = await oxios.get('/orders/all');
-      setOrdenes(res.data);
+      setOrdenes(res.data);  // Se actualiza el estado 'ordenes' con los datos obtenidos
       setTodasLasOrdenes(res.data); // guardar todas las órdenes para reiniciar el filtro
     } catch (error) {
       console.error('Error al cargar órdenes:', error);
       alert('No se pudo conectar al servidor.');
     }
   };
-
+  // Manejador para el cambio en el input del formulario (cuando el usuario escribe o selecciona una fecha)
   const handleFormularioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNuevaFecha(e.target.value);
   };
-
+// Manejador para el envío del formulario (cuando el usuario hace submit)
   const handleFormularioSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+ // Validación: si no se ha ingresado una fecha, se muestra una alerta y se detiene el envío
     if (!nuevaFecha) {
       alert('Por favor, selecciona una fecha de salida.');
       return;
     }
-
+    
+    // Se convierte la fecha ingresada (nuevaFecha) en un objeto Date y luego se formatea en ISO 8601
     const fechaISO = new Date(nuevaFecha).toISOString();
 
+    // Se valida que la fecha sea válida utilizando Date.parse (devuelve no es una fecha válida)
     if (isNaN(Date.parse(fechaISO))) {
       alert('La fecha de salida no es válida.');
       return;
     }
-
+    
+ //editar orden 
     try {
       if (ordenEditar) {
         await oxios.put('/orders/edit', { ...ordenEditar, departure_date: fechaISO });
