@@ -1,14 +1,10 @@
 import React from 'react';
-import { ToastContainer } from 'react-toastify';
 
 import CrearRequisicionForm from './components/CrearRequisicionForm';
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import Partes from './components/Partes/Partes';
-import ChainsawList from './components/Chainsaws/ChainsawList';
-
-//pages
-import { PlanPage } from './pages/plan/PlanPage';
+import Orden from './components/OrdSalidad/Orden';
 
 function App() {
   return (
@@ -25,23 +21,25 @@ function App() {
         <ul className="nav-links">
           <li><Link to="/requisiciones">Requisiciones</Link></li>
           <li><Link to="/catalogo-partes">Catálogo de Partes</Link></li>
-          <li><Link to="/planes">Planes</Link></li>
-          <li><Link to="/ChainsawAll">Lista Motosierras</Link></li>
+          <li><Link to="/planes-partes">Planes para las Partes</Link></li>
+          <li><Link to="Orden-salida">Ordenas de Salida</Link></li>
         </ul>
       </nav>
       <div className="content">
-        <h3>Laboratorio - Requisiciones</h3>
+        <h1>Laboratorio - Requisiciones</h1>
         <Routes>
           <Route path="/requisiciones" element={<CrearRequisicionForm />} />
           <Route path="/catalogo-partes" element={<Partes />} />
-          <Route path="/planes" element={<PlanPage />} />
-          <Route path="/ChainsawAll" element={<ChainsawList />} />
+          <Route path="/planes-partes" element={<CrearRequisicionForm />} />
+          <Route path="/Orden-salida" element={<Orden/>} />
+         
+
         </Routes>
       </div>
-      <ToastContainer />
     </div>
 
   );
 }
 
 export default App;
+

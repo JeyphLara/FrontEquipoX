@@ -1,0 +1,271 @@
+.orden-salida-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .orden-salida-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .busqueda-input {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .orden-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+  }
+  
+  .orden-table th,
+  .orden-table td {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .orden-table th {
+    background-color: #f0f0f0;
+    color: #444;
+  }
+  
+  .orden-table tbody tr:nth-child(even) {
+    background-color: #f7f7f7;
+  }
+  
+  .orden-table .btn-eliminar {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 0.5rem;
+  }
+  
+  .orden-table .btn-eliminar:hover {
+    background-color: #c0392b;
+  }
+  
+  .orden-table button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .orden-table button:hover {
+    background-color: #2980b9;
+  }
+  
+  .text-center {
+    text-align: center;
+    color: #888;
+    padding: 1rem;
+  }
+  .busqueda-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .busqueda-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    flex: 1;
+  }
+  
+
+  .lista-productos {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+  
+  .item-producto {
+    padding: 8px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .item-producto:hover {
+    background-color: #f2f2f2;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .orden-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .fecha-actual {
+    font-size: 1rem;
+    margin: 0;
+    text-align: right;
+  }
+  
+  .letra-e {
+    font-weight: bold;
+    color: #007bff;
+    margin-right: 5px;
+  }
+  
+  
+
+  .crear-orden-wrapper {
+    position: fixed;
+    top: 240px;
+    right: 200px;
+    z-index: 1000;
+  }
+  
+  .btn-crear-orden {
+    background-color: #39f7dd;
+    color: rgb(20, 13, 13);
+    padding: 10px 18px;
+    border: none;
+    margin-top: 5px;
+    position: absolute;
+    left: 1070px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 👈 efecto flotante */
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-crear-orden:hover {
+    background-color: #9b0e9b;
+  }
+  
+
+  .crear-orden-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px; /* 👈 Esto agrega el espacio/salto de línea */
+  }
+ 
+  .crear-orden-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+  }
+  .fecha-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+  
+  .fecha-actual {
+    font-size: 1rem;
+    margin: 0;
+    text-align: right;
+  }
+  
+  .letra-e {
+    font-weight: bold;
+    color: #040607;
+    margin-right: 5px;
+  }
+  
+  .busqueda-input {
+    background-color: #fdfdee; /* fondo oscuro */
+    color: #070606; /* texto claro */
+    border: 1px solid #070505;
+    padding: 10px 14px;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 1000px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .busqueda-input::placeholder {
+    color: #aaa;
+  }
+  
+  .busqueda-input:focus {
+    border-color: #007bff;
+  }
+  
+
+
+  .filtro-fecha {
+   
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 1px;
+    max-width: 130px;
+  }
+  
+
+  
+  .filtro-fecha label {
+    font-weight: 500;
+  }
+  
+  /* NUEVO contenedor para alinear input y botones en una línea */
+  .filtro-fecha .fila-controles {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  /* Input de fecha */
+  .filtro-fecha input[type="date"] {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Botones */
+  .filtro-fecha button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+    background-color: #42e9d3;
+    color: rgb(14, 11, 11);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .filtro-fecha button:hover {
+    background-color: #e6a5f7;
+  }
+  
+  .filtro-fecha button:last-child {
+    background-color: #2dcde9;
+  }
+  
+  .filtro-fecha button:last-child:hover {
+    background-color: #5a6268;
+  }
+  
