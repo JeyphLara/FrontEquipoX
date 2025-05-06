@@ -31,7 +31,6 @@ const DepartureModal: React.FC<DepartureModalProps> = ({
     const [currentDateTime, setCurrentDateTime] = useState("");
 
     useEffect(() => {
-        const now = new Date();
         const formatted = getLocalDateTime(); // "YYYY-MM-DDTHH:MM"
         setCurrentDateTime(formatted);
         if (orderToEdit) {
@@ -39,7 +38,7 @@ const DepartureModal: React.FC<DepartureModalProps> = ({
         } else {
             setFormData({
                 id: uuidv4(),
-                departure_date: formatted,
+                departure_date: currentDateTime,
             });
         }
     }, [orderToEdit, isOpen]);

@@ -17,7 +17,7 @@ const CrearRequisicionForm = () => {
   const [quantity, setQuantity] = useState(1);
   const [observation, setObservation] = useState('');
   const [requisitionDate, setRequisitionDate] = useState(new Date().toISOString().slice(0, 10));
-  const [mensaje, setMensaje] = useState('');
+  const [mensaje] = useState('');
   const [modalMessage, setModalMessage] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 

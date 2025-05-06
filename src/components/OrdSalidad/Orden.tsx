@@ -4,18 +4,18 @@ import './Orden.css';
 
 
 // Se define una interfaz
-interface Orden {
+interface OrdenProps {
   id: string;
   departure_date: string;
 }
 // Se define un componente funcional llamado 'Orden'
 const Orden = () => {
-  const [ordenes, setOrdenes] = useState<Orden[]>([]);
-  const [todasLasOrdenes, setTodasLasOrdenes] = useState<Orden[]>([]);
+  const [ordenes, setOrdenes] = useState<OrdenProps[]>([]);
+  const [todasLasOrdenes, setTodasLasOrdenes] = useState<OrdenProps[]>([]);
   const [nuevaFecha, setNuevaFecha] = useState<string>('');
-  const [ordenEditar, setOrdenEditar] = useState<Orden | null>(null);
+  const [ordenEditar, setOrdenEditar] = useState<OrdenProps | null>(null);
   const [filtroFecha, setFiltroFecha] = useState<string>('');
-  const [fechaActual, setFechaActual] = useState<string>(() => new Date().toLocaleDateString());
+  const [fechaActual] = useState<string>(() => new Date().toLocaleDateString());
 
   useEffect(() => {
     fetchOrdenes();
@@ -74,7 +74,7 @@ const Orden = () => {
     }
   };
 
-  const handleEditar = (orden: Orden) => {
+  const handleEditar = (orden: OrdenProps) => {
     setOrdenEditar(orden);
     setNuevaFecha(orden.departure_date.slice(0, 16));
   };
