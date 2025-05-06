@@ -31,11 +31,11 @@ const DepartureModal: React.FC<DepartureModalProps> = ({
     const [currentDateTime, setCurrentDateTime] = useState("");
 
     useEffect(() => {
-        const formatted = getLocalDateTime(); // "YYYY-MM-DDTHH:MM"
-        setCurrentDateTime(formatted);
         if (orderToEdit) {
             setFormData(orderToEdit);
         } else {
+            const formatted = getLocalDateTime(); // "YYYY-MM-DDTHH:MM"
+            setCurrentDateTime(formatted);
             setFormData({
                 id: uuidv4(),
                 departure_date: currentDateTime,
