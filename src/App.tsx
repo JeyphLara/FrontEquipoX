@@ -2,6 +2,7 @@ import React from 'react';
 import { ToastContainer } from 'react-toastify';
 
 import CrearRequisicionForm from './components/CrearRequisicionForm';
+import DepartureList from './components/departure/departureList';
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import Partes from './components/Partes/Partes';
@@ -27,6 +28,7 @@ function App() {
           <li><Link to="/catalogo-partes">Catálogo de Partes</Link></li>
           <li><Link to="/planes">Planes</Link></li>
           <li><Link to="/ChainsawAll">Lista Motosierras</Link></li>
+          <li><Link to="/orders">Ordenes de reparto</Link></li>
         </ul>
       </nav>
       <div className="content">
@@ -36,6 +38,7 @@ function App() {
           <Route path="/catalogo-partes" element={<Partes />} />
           <Route path="/planes" element={<PlanPage />} />
           <Route path="/ChainsawAll" element={<ChainsawList />} />
+          <Route path="/orders" element={<DepartureList/>} />
         </Routes>
       </div>
       <ToastContainer />
