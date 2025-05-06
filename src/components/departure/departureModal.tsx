@@ -28,17 +28,15 @@ const DepartureModal: React.FC<DepartureModalProps> = ({
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState<string>("");
     const [planError, setPlanError] = useState<string>(""); // Mensaje de error si no se cargan los planes
-    const [currentDateTime, setCurrentDateTime] = useState("");
 
     useEffect(() => {
         if (orderToEdit) {
             setFormData(orderToEdit);
         } else {
             const formatted = getLocalDateTime(); // "YYYY-MM-DDTHH:MM"
-            setCurrentDateTime(formatted);
             setFormData({
                 id: uuidv4(),
-                departure_date: currentDateTime,
+                departure_date: formatted,
             });
         }
     }, [orderToEdit, isOpen]);
