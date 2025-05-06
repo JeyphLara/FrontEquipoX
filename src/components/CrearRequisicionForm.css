@@ -14,7 +14,15 @@
     margin-bottom: 20px;
     color: #00bcd4;
   }
+  select {
+    color: white;         /* Cambia el color del texto del <select> */
+    background-color: black; /* Cambia el fondo del <select> */
+  }
   
+  option {
+    color: white;         /* Cambia el color del texto de las opciones */
+    background-color: black; /* Cambia el fondo de las opciones */
+  }
   .form-group {
     margin-bottom: 20px;
   }

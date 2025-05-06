@@ -64,7 +64,7 @@ const CrearRequisicionForm = () => {
 
       <div className="form-group">
         <label>Motosierra:</label>
-        <select value={chainsawId} onChange={(e) => setChainsawId(e.target.value)} required>
+        <select value={chainsawId} onChange={(e) => setChainsawId(e.target.value)} className="spinner" required >
           <option value="">Seleccione una motosierra</option>
           {chainsaws.map((cs) => (
             <option key={cs.id} value={cs.id}>{cs.name}</option>
